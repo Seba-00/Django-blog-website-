@@ -1,0 +1,27 @@
+{% extends 'master.html' %}
+
+{% block content %}
+<article>
+    <header>
+        <h4> Title:{{ post.title }}</h4>
+        <p>Published on: {{ post.date_published }}</p>
+        <p>Category: {{ post.category }}</p>
+         <p>Content:{{ post.content }}</p>
+    </header>
+</article>
+<section>
+    <h3>Comments</h3>
+    <ul>
+        {% for comment in comments %}
+        <li>
+            <strong>{{ comment.user.username }}</strong> - {{ comment.date_posted }}
+            <p>{{ comment.content }}</p>
+        </li>
+        {% empty %}
+        <li>No comments yet.</li>
+        {% endfor %}
+    </ul>
+</section>
+
+<a href="{% url 'blogs' %}" class="back-button" >Back to Blogs</a>
+{% endblock %}
